@@ -25,7 +25,7 @@ private:
 class File
 {
 public:
-    File() : _file_path{""}, _mode{""}, _file{NULL}
+    File() noexcept : _file_path{""}, _mode{""}, _file{NULL}
     {}
 
     explicit File(const std::string& path, const std::string& mode) :
@@ -35,7 +35,7 @@ public:
         _file = fopen(path.c_str(), mode.c_str());
         if( _file == NULL )
         {
-            throw FileException("Could not open file" + _file_path);
+            // throw FileException("Could not open file" + _file_path);
         }
         std::cout << "[Constructor] END\n";
     }
@@ -48,7 +48,7 @@ public:
         _file = fopen(_file_path.c_str(), _mode.c_str());
         if( _file == NULL )
         {
-            throw FileException("Could not open file" + _file_path);
+            // throw FileException("Could not open file" + _file_path);
         }
         std::cout << "[Copy constructor] END\n";
     }
@@ -68,7 +68,7 @@ public:
             _file = fopen(_file_path.c_str(), _mode.c_str());
             if( _file == NULL )
             {
-                throw FileException("Could not open file" + _file_path);
+                //throw FileException("Could not open file" + _file_path);
             }
         }
         std::cout << "[Copy assignment operator] END\n";
@@ -107,7 +107,7 @@ public:
     {
         if( _file == NULL )
         {
-            throw FileException("File is NULL");
+            //throw FileException("File is NULL");
         }
 
         fseek(_file, 0, SEEK_END);
